@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
+/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:57:05 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/01 18:57:50 by pinkdonkeyj      ###   ########.fr       */
+/*   Updated: 2024/02/08 14:02:59 by gyvergni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
+/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:53:39 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/07 00:53:29 by pinkdonkeyj      ###   ########.fr       */
+/*   Updated: 2024/02/08 16:21:33 by gyvergni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,33 @@ void	identify_sprite(t_game *game, int x, int y)
 void	render_sprite(t_game *game, void *mlx_img, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx_id, game->mlx_window, \
-	mlx_img, x * 64, y * 64);
+	mlx_img, y * 64, x * 64);
 }
 
 void	display_moves(t_game *game)
 {
 	char	*number;
 	char	*display;
+	char	*display2;
 
 	number = ft_itoa(game->nb_moves);
 	display = ft_strjoin("You made ", number);
-	display = ft_strjoin(display, "moves");
-	mlx_string_put(game->mlx_id, game->mlx_window, 40, 20, 99999, display);
-	free(display);
+	display2 = ft_strjoin(display, " moves");
+	mlx_string_put(game->mlx_id, game->mlx_window, 40, 20, 00000, display2);
 	free(number);
+	free(display);
+	free(display2);
 	number = ft_itoa(game->nb_children);
+	display = "You killed all the children!";
 	if (game->nb_children == 0)
-	{
-		display = "Thank you for running over these children!";
-		mlx_string_put(game->mlx_id, game->mlx_window, 60, 40, 99999, display);
-	}
+		mlx_string_put(game->mlx_id, game->mlx_window, 40, 40, 00001, display);
 	else
 	{
 		display = ft_strjoin("There are ", number);
-		display = ft_strjoin(display, "children left to run over\n");
-		mlx_string_put(game->mlx_id, game->mlx_window, 60, 40, 99999, display);
+		display2 = ft_strjoin(display, " children left to run over\n");
+		mlx_string_put(game->mlx_id, game->mlx_window, 40, 40, 00001, display2);
 		free(display);
+		free(display2);
 	}
 	free(number);
 }
@@ -99,6 +100,7 @@ void	render_map(t_game *game)
 {
 	int	x;
 	int	y;
+
 	x = 0;
 	while (x < game->height)
 	{

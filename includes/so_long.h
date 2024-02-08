@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
+/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:34 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/08 00:25:10 by pinkdonkeyj      ###   ########.fr       */
+/*   Updated: 2024/02/08 15:42:54 by gyvergni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	protect(t_game *game, void *to_test, char	*err_msg);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 int		get_height(char **map);
-void	check_map(t_game *game, char **map);
+void	check_rectangle(t_game *game);
 char	**ft_split(char const *s, char c);
 void	init_position(t_game *game);
 void	render_map(t_game *game);
@@ -84,5 +84,7 @@ int		refresh_window(t_game *game);
 int		exit_game(t_game *game);
 void	free_map(char	**map);
 void	free_game(t_game *game);
+char	**dup_map(t_game *game, int height);
+void	map_error(t_game *game, char **map, char *err_msg);
 
 #endif

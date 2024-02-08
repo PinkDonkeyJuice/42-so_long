@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
+/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:53 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/08 01:31:25 by pinkdonkeyj      ###   ########.fr       */
+/*   Updated: 2024/02/08 15:51:52 by gyvergni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 void	free_map(char **map)
 {
 	int	i;
-	
+
 	if (map != NULL)
 	{
 		i = 0;
-		while(map[i])
+		while (map[i])
 		{
-			free(map[i]);
+			if (map[i])
+				free(map[i]);
 			i++;
 		}
 		free(map);
@@ -39,6 +40,12 @@ void	error(t_game *game, char *err_msg)
 	ft_putstr_fd(2, "Error\n");
 	ft_putstr_fd(2, err_msg);
 	if (game != NULL)
-		free_game(game);
+		exit_game(game);
 	exit(-1);
+}
+
+void	map_error(t_game *game, char **map, char *err_msg)
+{
+	free_map(map);
+	error(game, err_msg);
 }

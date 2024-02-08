@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
+/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:59:27 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/07 00:39:05 by pinkdonkeyj      ###   ########.fr       */
+/*   Updated: 2024/02/08 16:22:18 by gyvergni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	handle_target(t_game *game, int x_dest, int y_dest)
 	char	*element;
 
 	element = &(game->map[x_dest][y_dest]);
-	if (*element != '1' && *element != 'P' && *element != 'p' 
-	&& (*element != 'E' || game->nb_children == 0))
+	if (*element != '1' && *element != 'P' && *element != 'p'\
+		&& (*element != 'E' || game->nb_children == 0))
 	{
 		if (*element == 'C')
 		{
@@ -52,14 +52,14 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == XK_Escape)
 		exit_game(game);
 	else if (keycode == XK_w || keycode == XK_Up)
-		y_dest--;
-	else if (keycode == XK_a || keycode == XK_Left)
 		x_dest--;
+	else if (keycode == XK_a || keycode == XK_Left)
+		y_dest--;
 	else if (keycode == XK_s || keycode == XK_Down)
-		y_dest++;
-	else if (keycode == XK_d || keycode == XK_Right)
 		x_dest++;
+	else if (keycode == XK_d || keycode == XK_Right)
+		y_dest++;
 	handle_target(game, x_dest, y_dest);
 	refresh_window(game);
-	return(0);
+	return (0);
 }

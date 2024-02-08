@@ -1,50 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/08 14:56:01 by gyvergni          #+#    #+#             */
+/*   Updated: 2024/02/08 14:57:56 by gyvergni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-
-char	*ft_strdup(const char *s)
-{
-	char		*dup;
-	int		i;
-	int		len;
-
-	i = 0;
-	len = ft_strlen((char *)s);
-	dup = malloc(sizeof(char) * (len + 1));
-	if (dup == NULL)
-		return (NULL);
-	while (i < len)
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-
-int	ft_strchr(char **tab, int c)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (tab[i])
-	{
-		j = 0;
-		while (tab[i][j])
-		{
-			if (tab[i][j] == (char)c)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 char	*ft_substr(char const *s, unsigned int start, int len)
 {
 	int		i;
 	int		s_len;
-	char		*sub;
+	char	*sub;
 
 	sub = NULL;
 	s_len = ft_strlen((char *)s) - start;
@@ -126,16 +98,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	sj[i + j] = '\0';
 	return (sj);
-}
-
-int	get_height(char **map)
-{
-	int	height;
-
-	height = 0;
-	while (map[height])
-		height++;
-	return (height);
 }
 
 void	ft_putstr_fd(int fd, char *s)

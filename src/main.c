@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
+/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:46 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/08 01:24:43 by pinkdonkeyj      ###   ########.fr       */
+/*   Updated: 2024/02/08 16:19:08 by gyvergni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	refresh_window(t_game *game)
 {
-	//mlx_clear_window(game->mlx_id, game->mlx_window);
 	render_map(game);
 	return (0);
 }
@@ -39,8 +38,8 @@ int	main(int argc, char **argv)
 	protect(game, mlx_id, "Failure to initialise game\n");
 	init_game(game, mlx_id);
 	parse_map(game, argv[1]);
-	check(game);
-	mlx_window = mlx_new_window(mlx_id, game->length * 64, game->height * 64, "so_long");
+	mlx_window = mlx_new_window(mlx_id, game->length * 64, \
+		game->height * 64, "so_long");
 	protect(game, mlx_window, "Failure to create window\n");
 	game->mlx_window = mlx_window;
 	render_map(game);

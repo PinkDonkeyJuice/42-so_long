@@ -16,7 +16,8 @@ CFILES = check_path.c\
 	render.c\
 	itoa.c\
 	input.c\
-	exit_game.c
+	exit_game.c\
+	map_utils.c
 
 SRCS_DIR = ./src/
 OBJS_DIR = ./obj/
