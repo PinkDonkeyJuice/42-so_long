@@ -6,7 +6,7 @@
 /*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:52:04 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/02 15:34:33 by pinkdonkeyj      ###   ########.fr       */
+/*   Updated: 2024/02/08 00:59:36 by pinkdonkeyj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ void	check_path(char **map, t_game *game)
 {
 	flood(map, game->x, game->y, game->length, game->height);
 	if (ft_strchr(map, 'C') || ft_strchr(map, 'E'))
-		error("No valid path exists\n");
+	{	
+		free_map(map);
+		error(game, "No valid path exists\n");
+	}
 }

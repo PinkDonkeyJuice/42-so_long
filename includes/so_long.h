@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:34 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/06 15:28:08 by gyvergni         ###   ########.fr       */
+/*   Updated: 2024/02/08 00:25:10 by pinkdonkeyj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@
 # define EXIT				'E'
 # define BLOOD				'B'
 # define CAR_BLOOD			'p'
-# define ESC				53
-# define W					13
-# define A					0
-# define S					1
-# define D					2
 
 typedef struct s_game
 {
@@ -60,7 +55,7 @@ typedef struct s_game
 	void	*mlx_road_blood;
 } t_game;
 
-void	error(char *err_msg);
+void	error(t_game *game, char *err_msg);
 char	*ft_strdup(const char *s);
 int		ft_strchr(char **tab, int c);
 char	*ft_substr(char const *s, unsigned int start, int len);
@@ -73,11 +68,11 @@ void	free_table(char	**tab);
 void	init_game(t_game *game, void *mlx_id);
 void	check_args(int argc, char *map_name);
 void	parse_map(t_game *game, char *map_name);
-void	protect(void	*to_test, char	*err_msg);
+void	protect(t_game *game, void *to_test, char	*err_msg);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 int		get_height(char **map);
-void	check_map(char **map);
+void	check_map(t_game *game, char **map);
 char	**ft_split(char const *s, char c);
 void	init_position(t_game *game);
 void	render_map(t_game *game);
@@ -85,8 +80,9 @@ char	*ft_itoa(int n);
 void	render_sprite(t_game *game, void *mlx_img, int x, int y);
 void	init_sprites(t_game *game);
 int		handle_keypress(int keycode, t_game *game);
-int	refresh_window(t_game *game);
-int	exit_game(t_game *game);
+int		refresh_window(t_game *game);
+int		exit_game(t_game *game);
 void	free_map(char	**map);
+void	free_game(t_game *game);
 
 #endif

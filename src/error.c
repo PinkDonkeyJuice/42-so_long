@@ -3,37 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:53 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/06 15:22:16 by gyvergni         ###   ########.fr       */
+/*   Updated: 2024/02/08 01:31:25 by pinkdonkeyj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_map(char	**map)
+void	free_map(char **map)
 {
 	int	i;
-
-	i = 0;
-	while(map[i])
+	
+	if (map != NULL)
 	{
-		free(map[i]);
-		i++;
+		i = 0;
+		while(map[i])
+		{
+			free(map[i]);
+			i++;
+		}
+		free(map);
 	}
-	free(map);
 }
 
-void	protect(void	*to_test, char	*err_msg)
+void	protect(t_game *game, void *to_test, char *err_msg)
 {
 	if (to_test == NULL)
-		error(err_msg);
+		error(game, err_msg);
 }
 
-void	error(char *err_msg)
+void	error(t_game *game, char *err_msg)
 {
 	ft_putstr_fd(2, "Error\n");
 	ft_putstr_fd(2, err_msg);
+	if (game != NULL)
+		free_game(game);
 	exit(-1);
 }
