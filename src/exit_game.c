@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:12:47 by gyvergni          #+#    #+#             */
-/*   Updated: 2024/02/08 14:02:50 by gyvergni         ###   ########.fr       */
+/*   Updated: 2024/02/09 00:41:14 by pinkdonkeyj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	free_game(t_game *game)
 	mlx_destroy_image(game->mlx_id, game->mlx_car_blood_up);
 	mlx_destroy_image(game->mlx_id, game->mlx_car_blood_down);
 	mlx_destroy_image(game->mlx_id, game->mlx_road_blood);
-	if (game == NULL)
-		ft_putstr_fd(1, "game null");
 }
 
 int	exit_game(t_game *game)

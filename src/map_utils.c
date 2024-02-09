@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:50:24 by gyvergni          #+#    #+#             */
-/*   Updated: 2024/02/08 14:57:36 by gyvergni         ###   ########.fr       */
+/*   Updated: 2024/02/09 00:42:04 by pinkdonkeyj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ char	**dup_map(t_game *game, int height)
 
 	i = 0;
 	map_cpy = malloc(sizeof(char *) * (height + 1));
-	if (map_cpy == NULL)
-		error(game, "Memory problem while checking the parameters\n");
+	protect(game, map_cpy, "Memory problem while checking the parameters\n");
 	while (i < height)
 	{
 		map_cpy[i] = ft_strdup(game->map[i]);

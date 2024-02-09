@@ -3,24 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pinkdonkeyjuice <pinkdonkeyjuice@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:41 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/08 16:23:02 by gyvergni         ###   ########.fr       */
+/*   Updated: 2024/02/09 01:29:25 by pinkdonkeyj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*concatenate_map(char *map_content, char *buffer)
+char	*concatenate_map(char *map_content, char *buffer, t_game *game)
 {
-	char	*old_content;
 	char	*new_content;	
 
-	old_content = map_content;
-	new_content = ft_strjoin(old_content, buffer);
-	free(old_content);
+	new_content = ft_strjoin(map_content, buffer);
+	if (new_content == NULL)
+	{
+		free(map_content);
+		free(buffer);
+		error(game, "Memory failure while parsing the map\n");
+	}
+	free(map_content);
 	return (new_content);
+}
+
+void	read_error(t_game *game, char *map_content, char *buffer)
+{
+	if (buffer)
+		free(buffer);
+	if (map_content)
+		free(map_content);
+	error(game, "Encountered while reading the map file\n");
 }
 
 char	*read_map_file(t_game *game, char *map_name, \
@@ -31,23 +44,20 @@ char	*read_map_file(t_game *game, char *map_name, \
 
 	map_fd = open(map_name, O_RDONLY);
 	if (map_fd == -1)
-	{
-		free(buffer);
-		free(map_content);
-		error(game, "Unable to open the map file\n");
-	}
+		read_error(game, map_content, buffer);
 	n_read = read(map_fd, buffer, 10);
 	while (n_read != 0)
 	{
+		if (n_read == -1 || buffer == NULL)
+			read_error(game, map_content, buffer);
 		buffer[n_read] = '\0';
-		map_content = concatenate_map(map_content, buffer);
+		map_content = concatenate_map(map_content, buffer, game);
 		if (!map_content)
-		{
-			free(buffer);
-			error(game, "Error parsing the map\n");
-		}
+			read_error(game, map_content, buffer);
 		n_read = read(map_fd, buffer, 10);
 	}
+	if (close(map_fd) == -1)
+		read_error(game, map_content, buffer);
 	free(buffer);
 	return (map_content);
 }
