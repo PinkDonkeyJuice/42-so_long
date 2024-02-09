@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyvergni <gyvergni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:53:39 by pinkdonkeyj       #+#    #+#             */
-/*   Updated: 2024/02/09 14:35:32 by gyvergni         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:18:08 by gyvergni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	render_player(t_game *game, int x, int y)
 {
@@ -71,10 +71,28 @@ void	render_sprite(t_game *game, void *mlx_img, int x, int y)
 void	display_moves(t_game *game)
 {
 	char	*number;
+	char	*display;
+	char	*display2;
 
 	number = ft_itoa(game->nb_moves);
-	ft_putstr_fd(1, number);
-	ft_putstr_fd(1, "\n");
+	display = ft_strjoin("You made ", number);
+	display2 = ft_strjoin(display, " moves");
+	mlx_string_put(game->mlx_id, game->mlx_window, 40, 20, 00000, display2);
+	free(number);
+	free(display);
+	free(display2);
+	number = ft_itoa(game->nb_children);
+	display = "You killed all the children!";
+	if (game->nb_children == 0)
+		mlx_string_put(game->mlx_id, game->mlx_window, 40, 40, 00001, display);
+	else
+	{
+		display = ft_strjoin("There are ", number);
+		display2 = ft_strjoin(display, " children left to run over");
+		mlx_string_put(game->mlx_id, game->mlx_window, 40, 40, 00001, display2);
+		free(display);
+		free(display2);
+	}
 	free(number);
 }
 
